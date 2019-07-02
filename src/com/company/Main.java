@@ -95,16 +95,17 @@ public class Main extends Application {
 
         final Button removeButton = new Button("Verwijderen");
         removeButton.setOnAction((ActionEvent e) -> {
-            ObservableList<Person> personSelected, allPersons;
-            allPersons = table.getItems();
-            personSelected = table.getSelectionModel().getSelectedItems();
-            personSelected.forEach(allPersons::remove);
             psf.delete(table.getSelectionModel().getSelectedItem());
         });
 
         final Button editButton = new Button("Bewerk");
         editButton.setOnAction((ActionEvent e) -> {
-
+            Person person = table.getSelectionModel().getSelectedItem();
+            if (person != null) {
+                Stage Dialog = new Dialog(stage, psf, person);
+                Dialog.sizeToScene();
+                Dialog.showAndWait();
+            }
         });
 
         hb.getChildren().addAll(addButton, editButton, removeButton);
