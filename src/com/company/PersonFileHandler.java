@@ -25,7 +25,10 @@ public class PersonFileHandler {
         this.delimiter = delimiter;
     }
 
-
+    public ArrayList<Person> getPersons() {
+        readCSV();
+        return this.persons;
+    }
 
     private void readCSV() {
         ArrayList<Person> list = new ArrayList<Person>();
@@ -72,6 +75,8 @@ public class PersonFileHandler {
         callWatchers();
     }
 
+
+
     public void append(Person person) {
         persons.add(person);
         write();
@@ -79,7 +84,7 @@ public class PersonFileHandler {
 
     public void delete(Person person) {
         persons.remove(person);
-        //write();
+        write();
     }
 
     private void write() {

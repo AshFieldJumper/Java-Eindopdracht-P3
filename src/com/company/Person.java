@@ -32,8 +32,17 @@ public class Person {
         this.woonplaats = new SimpleStringProperty(woonplaats);
         this.geboortedatum = new SimpleStringProperty(geboortedatum);
         this.telefoon = new SimpleStringProperty(telefoon);
+    }
 
-
+    public Person() {
+        this.voornaam = new SimpleStringProperty("");
+        this.achternaam = new SimpleStringProperty("");
+        this.tussenvoegsel = new SimpleStringProperty("");
+        this.adres = new SimpleStringProperty("");
+        this.postcode = new SimpleStringProperty("");
+        this.woonplaats = new SimpleStringProperty("");
+        this.geboortedatum = new SimpleStringProperty("");
+        this.telefoon = new SimpleStringProperty("");
     }
 
 

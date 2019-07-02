@@ -21,7 +21,6 @@ import java.util.function.Function;
 public class Main extends Application {
     private final PersonFileHandler psf = new PersonFileHandler("data.csv", ";");
     private final TableView<Person> table = new TableView<Person>();
-    private ObservableList<Person> data = FXCollections.observableArrayList();
 
     
     final HBox hb = new HBox();
@@ -32,8 +31,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        psf.addWatcher((ArrayList<Person>persons)->{
-            this.data = FXCollections.observableArrayList(persons);
+        psf.addWatcher((ArrayList<Person> persons) -> {
+            table.setItems(FXCollections.observableArrayList(persons));
         });
 
         Scene scene = new Scene(new Group());
@@ -84,30 +83,31 @@ public class Main extends Application {
 
 
 
-        table.setItems(data);
         table.getColumns().addAll(voornaam, achternaam, tussenvoegsel, adres, postcode, woonplaats, geboortedatum,telefoon);
 
 
         final Button addButton = new Button("Toevoegen");
         addButton.setOnAction((ActionEvent e) -> {
-                //psf.append(new Person(result.get(),"Panne", "koek", "Hoi","9408CA","Assen","9 mei","06815646546"));
-            Stage myDialog = new Dialog(stage);
-            myDialog.sizeToScene();
-            myDialog.show();
-
+            Stage Dialog = new Dialog(stage, psf);
+            Dialog.sizeToScene();
+            Dialog.showAndWait();
         });
 
         final Button removeButton = new Button("Verwijderen");
         removeButton.setOnAction((ActionEvent e) -> {
             ObservableList<Person> personSelected, allPersons;
-//            allPersons = table.getItems();
-//            personSelected = table.getSelectionModel().getSelectedItems();
-//            personSelected.forEach(allPersons::remove);
+            allPersons = table.getItems();
+            personSelected = table.getSelectionModel().getSelectedItems();
+            personSelected.forEach(allPersons::remove);
             psf.delete(table.getSelectionModel().getSelectedItem());
-            System.out.println(table.getSelectionModel().getSelectedItem());
         });
 
-        hb.getChildren().addAll(addButton, removeButton);
+        final Button editButton = new Button("Bewerk");
+        editButton.setOnAction((ActionEvent e) -> {
+
+        });
+
+        hb.getChildren().addAll(addButton, editButton, removeButton);
         hb.setSpacing(3);
 
         final VBox vbox = new VBox();

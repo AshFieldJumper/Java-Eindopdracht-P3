@@ -8,7 +8,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -17,7 +16,7 @@ import javafx.stage.Stage;
 
 class Dialog extends Stage {
 
-    public Dialog(Stage owner) {
+    public Dialog(Stage owner, PersonFileHandler handler) {
         super();
         initOwner(owner);
         setTitle("Toevoegen");
@@ -76,9 +75,18 @@ class Dialog extends Stage {
         Add.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
-                System.out.println(Voornaamfld.getText());
-                psf.append(new Person(result.get(),"Panne", "koek", "Hoi","9408CA","Assen","9 mei","06815646546"));
+                Person person = new Person();
+                person.setVoornaam(Voornaamfld.getText());
+                person.setAchternaam(Achternaamfld.getText());
+                person.setTussenvoegsel(Tussenvoegselfld.getText());
+                person.setAdres(Adresfld.getText());
+                person.setPostcode(Postcodefld.getText());
+                person.setWoonplaats(Woonplaatsfld.getText());
+                person.setGeboortedatum(Geboortedatumfld.getText());
+                person.setTelefoon(Telefoonfld.getText());
 
+                handler.append(person);
+                close();
             }
         });
         gridpane.add(Add, 1, 9);
