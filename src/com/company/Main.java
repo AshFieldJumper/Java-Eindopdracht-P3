@@ -42,45 +42,35 @@ public class Main extends Application {
 
         TableColumn<Person, String> voornaam = new TableColumn<Person,String>("Voornaam");
         voornaam.setMinWidth(100);
-        voornaam.setCellValueFactory(
-                new PropertyValueFactory("voornaam"));
+        voornaam.setCellValueFactory(new PropertyValueFactory("voornaam"));
 
         TableColumn achternaam = new TableColumn<Person,String>("Achternaam");
         achternaam.setMinWidth(100);
-        achternaam.setCellValueFactory(
-                new PropertyValueFactory<>("achternaam"));
+        achternaam.setCellValueFactory(new PropertyValueFactory<>("achternaam"));
 
         TableColumn<Person,String> tussenvoegsel = new TableColumn<Person,String>("Tussenvoegsel");
         tussenvoegsel.setMinWidth(100);
-        tussenvoegsel.setCellValueFactory(
-                new PropertyValueFactory<>("tussenvoegsel"));
+        tussenvoegsel.setCellValueFactory(new PropertyValueFactory<>("tussenvoegsel"));
 
         TableColumn<Person,String> adres = new TableColumn<Person,String>("Adres");
         adres.setMinWidth(100);
-        adres.setCellValueFactory(
-                new PropertyValueFactory<>("adres"));
+        adres.setCellValueFactory(new PropertyValueFactory<>("adres"));
 
         TableColumn<Person,String> postcode = new TableColumn<Person,String>("Postcode");
         postcode.setMinWidth(100);
-        postcode.setCellValueFactory(
-                new PropertyValueFactory<>("postcode"));
+        postcode.setCellValueFactory(new PropertyValueFactory<>("postcode"));
 
         TableColumn<Person,String> woonplaats = new TableColumn<Person,String>("Woonplaats");
         woonplaats.setMinWidth(100);
-        woonplaats.setCellValueFactory(
-                new PropertyValueFactory<>("woonplaats"));
+        woonplaats.setCellValueFactory(new PropertyValueFactory<>("woonplaats"));
 
         TableColumn<Person,String> geboortedatum = new TableColumn<Person,String>("Geboortedatum");
         geboortedatum.setMinWidth(100);
-        geboortedatum.setCellValueFactory(
-                new PropertyValueFactory<>("geboortedatum"));
+        geboortedatum.setCellValueFactory(new PropertyValueFactory<>("geboortedatum"));
 
         TableColumn<Person,String> telefoon = new TableColumn<Person,String>("Telefoon");
         telefoon.setMinWidth(100);
-        telefoon.setCellValueFactory(
-                new PropertyValueFactory<>("telefoon"));
-
-
+        telefoon.setCellValueFactory(new PropertyValueFactory<>("telefoon"));
 
 
         table.getColumns().addAll(voornaam, achternaam, tussenvoegsel, adres, postcode, woonplaats, geboortedatum,telefoon);
@@ -105,6 +95,11 @@ public class Main extends Application {
                 Stage Dialog = new Dialog(stage, psf, person);
                 Dialog.sizeToScene();
                 Dialog.showAndWait();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Let op!");
+                alert.setHeaderText("Selecteer eerst een persoon");
+                alert.showAndWait();
             }
         });
 

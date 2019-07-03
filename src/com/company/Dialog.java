@@ -7,14 +7,14 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.IOException;
+import java.time.LocalDate;
 
 class Dialog extends Stage {
 
@@ -73,9 +73,14 @@ class Dialog extends Stage {
         final TextField Woonplaatsfld = new TextField(person.getWoonplaats());
         gridpane.add(Woonplaatsfld, 1, 6);
 
+        LocalDate date = null;
+        if (!person.getGeboortedatum().isEmpty()){
+            date = LocalDate.parse(person.getGeboortedatum());
+        }
+
         Label Geboortedatum = new Label("Geboortedatum: ");
         gridpane.add(Geboortedatum, 0, 7);
-        final TextField Geboortedatumfld = new TextField(person.getGeboortedatum());
+        final DatePicker Geboortedatumfld = new DatePicker(date);
         gridpane.add(Geboortedatumfld, 1, 7);
 
         Label Telefoon = new Label("Telefoon: ");
@@ -98,7 +103,7 @@ class Dialog extends Stage {
                 person.setAdres(Adresfld.getText());
                 person.setPostcode(Postcodefld.getText());
                 person.setWoonplaats(Woonplaatsfld.getText());
-                person.setGeboortedatum(Geboortedatumfld.getText());
+                person.setGeboortedatum(Geboortedatumfld.getValue());
                 person.setTelefoon(Telefoonfld.getText());
 
                 handler.append(person);

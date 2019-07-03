@@ -3,6 +3,8 @@ package com.company;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.time.LocalDate;
+
 public class Person {
 
     private final SimpleStringProperty voornaam;
@@ -126,8 +128,8 @@ public class Person {
         return geboortedatum;
     }
 
-    public void setGeboortedatum(String geboortedatum) {
-        this.geboortedatum.set(geboortedatum);
+    public void setGeboortedatum(LocalDate geboortedatum) {
+        this.geboortedatum.set(String.valueOf(geboortedatum));
     }
 
     public String getTelefoon() {
